@@ -2,20 +2,16 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: longhorn
-  namespace: argocd
+  namespace: storage
 spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
   project: default
-  sources:
-    - chart: longhorn
-      repoURL: https://charts.longhorn.io/
-      targetRevision: v1.12.0 # Replace with the Longhorn version you'd like to install or upgrade to
-      helm:
-        values: |
-          preUpgradeChecker:
-            jobEnabled: false
+  sources: 
+    repoURL: https://github.com/longhorn/longhorn.git
+    targetRevision: HEAD
+    path: deploy/longhorn.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
