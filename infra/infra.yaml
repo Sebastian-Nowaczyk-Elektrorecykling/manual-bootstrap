@@ -66,7 +66,7 @@ spec:
   source:
     repoURL: https://github.com/Sebastian-Nowaczyk-Elektrorecykling/manual-bootstrap.git
     targetRevision: main
-    path: infra
+    path: 01-db
   destination:
     server: https://kubernetes.default.svc
     namespace: infra
