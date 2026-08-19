@@ -12,6 +12,12 @@ spec:
     repoURL: https://github.com/longhorn/longhorn.git
     targetRevision: HEAD
     path: deploy/longhorn.yaml
+    helm:
+      valuesObject:
+        defaultSettings:
+          defaultReplicaCount: 1
+        persistence:
+          defaultClassReplicaCount: 1
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
