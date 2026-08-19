@@ -10,7 +10,7 @@ spec:
   project: default
   sources: 
     repoURL: https://github.com/longhorn/longhorn.git
-    targetRevision: HEAD
+    targetRevision: 1.6.2
     path: deploy/longhorn.yaml
     helm:
       valuesObject:
