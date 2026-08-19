@@ -3,21 +3,29 @@ kind: Application
 metadata:
   name: longhorn
   namespace: infra
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
-  syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
   project: default
-  sources: 
-    repoURL: https://github.com/longhorn/longhorn.git
-    targetRevision: 1.6.2
-    path: deploy/longhorn.yaml
+  source:
+    repoURL: https://charts.longhorn.io
+    chart: longhorn
+    # Using targetRevision as empty or '*' pulls the latest chart version
+    targetRevision: '*'
     helm:
-      valuesObject:
+      values: |
         defaultSettings:
+          # Sets the default replica count for volumes created from the UI
           defaultReplicaCount: 1
         persistence:
+          # Sets the replica count for the Longhorn-provisioned default StorageClass
           defaultClassReplicaCount: 1
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
