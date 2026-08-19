@@ -1,6 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
+  name: infra
+  annotations:
+    argocd.argoproj.io/sync-wave: "-100"
+---
+apiVersion: v1
+kind: Namespace
+metadata:
   name: longhorn-system
   annotations:
     argocd.argoproj.io/sync-wave: "-10"
@@ -47,3 +54,26 @@ spec:
     syncOptions:
       - CreateNamespace=true
 ---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloud-native-postgres
+  namespace: infra
+  labels:
+    app.kubernetes.io/name: cloud-native-postgres
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Sebastian-Nowaczyk-Elektrorecykling/manual-bootstrap.git
+    targetRevision: main
+    path: infra
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: infra
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
