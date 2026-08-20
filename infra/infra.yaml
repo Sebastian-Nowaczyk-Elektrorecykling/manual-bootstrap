@@ -61,6 +61,8 @@ metadata:
   namespace: infra
   labels:
     app.kubernetes.io/name: cloud-native-postgres
+  annotations:
+    argocd.argoproj.io/sync-wave: "-7"
 spec:
   project: default
   source:
