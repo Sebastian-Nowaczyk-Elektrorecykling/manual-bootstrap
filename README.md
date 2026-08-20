@@ -1,6 +1,8 @@
 # jeżeli to jest hostowane na innym URL to trzeba zmienić
 to oryginalnie jest na tym URL:
-https://github.com/Sebastian-Nowaczyk-Elektrorecykling/manual-bootstrap.git
+
+https://github.com/Sebastian-Nowaczyk-Elektrorecykling/manual-bootstrap.
+
 jeśli jest to teraz gdzie indziej to trzeba zmienić URL w infra/infra.yaml
 
 # foldery 00-komponent
