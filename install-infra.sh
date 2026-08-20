@@ -20,5 +20,5 @@ spec:
     syncOptions: []
     automated:
       prune: true
-      enabled: true
+      self-heal: true
 EOF
