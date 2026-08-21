@@ -9,7 +9,7 @@ metadata:
 spec:
   template:
     spec:
-      serviceAccountName: cluster-admin
+      serviceAccountName: argocd-applicationset-controller
       restartPolicy: Never
       containers:
         - name: kubectl
