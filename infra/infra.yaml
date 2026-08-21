@@ -18,7 +18,7 @@ spec:
             - /bin/sh
             - -c
             - |
-              kubectl create ns longhorn-system && kubectl get sa longhorn-service-account -n longhorn-system || kubectl create sa longhorn-service-account -n longhorn-system
+              (kubectl get ns longhorn-system || kubectl create ns longhorn-system) && (kubectl get sa longhorn-service-account -n longhorn-system || kubectl create sa longhorn-service-account -n longhorn-system)
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
