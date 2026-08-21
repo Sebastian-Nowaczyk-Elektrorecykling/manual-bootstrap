@@ -9,7 +9,7 @@ metadata:
 spec:
   template:
     spec:
-      serviceAccountName: helm-or-cluster-admin-sa
+      serviceAccountName: cluster-admin
       restartPolicy: Never
       containers:
         - name: kubectl
